@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: mysite
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "waitress-serve --port=$PORT mysite.wsgi:application"
+    plan: free
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_ALLOWED_HOSTS
+        value: "mech-website.onrender.com"
+

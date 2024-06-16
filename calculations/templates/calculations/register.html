@@ -1,0 +1,30 @@
+{% extends "calculations/base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-teal-400">
+    <div class="w-full max-w-lg bg-white shadow-lg rounded-lg px-8 py-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Register</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="space-y-6">
+                {% for field in form %}
+                    <div class="flex flex-col space-y-2">
+                        <label for="{{ field.id_for_label }}" class="text-sm font-medium text-gray-700">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <p class="text-red-600 text-sm">{{ field.errors }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="mt-8">
+                <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300" type="submit">
+                    Register
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
