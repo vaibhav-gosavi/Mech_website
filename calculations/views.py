@@ -31,7 +31,7 @@ def home(request):
         {
 
             'title': 'Composite wall with parallel resistance to heat flow',
-            'description': 'obtain the temperature distribution through the composite wall and calculate the convective as well as conductive heat transfer rates or heat flux. Plot the temperature distribution.',
+            'description': 'Calculate temperature distribution through a composite wall and determine heat transfer rates, then plot the distribution.',
             'url_name': 'problem_2'
         },
         {
