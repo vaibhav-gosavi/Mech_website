@@ -45,30 +45,11 @@
         {% endblock %}
     </div>
 
-    <footer class="bg-gray-800 text-white py-4 mt-10">
+    <footer class="bg-gray-800 text-white py-4">
         <div class="container mx-auto text-center">
             <p>&copy; 2024 Mech Engineering Problems. This website is currently under testing and will be updated in the future. This is the beta mode of the website.</p>
         </div>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                const messageContainer = document.getElementById('message-container');
-                if (messageContainer) {
-                    messageContainer.style.transition = 'opacity 0.5s ease';
-                    messageContainer.style.opacity = '0';
-                    setTimeout(function() {
-                        messageContainer.remove();
-                    }, 500); // Wait for the fade out transition
-                }
-            }, 3000); // 3000ms = 3 seconds
-
-            document.getElementById('nav-toggle').addEventListener('click', function() {
-                const navContent = document.getElementById('nav-content');
-                navContent.classList.toggle('hidden');
-            });
-        });
-    </script>
+    
 </body>
 </html>

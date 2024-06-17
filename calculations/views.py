@@ -1,11 +1,13 @@
 import json
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .forms import HeatTransferForm, HeatTransferForm1, HeatTransferForm2, HeatTransferForm3, HeatTransferForm4, HeatTransferForm5, HeatTransferForm6
+from .forms import FeedbackForm, HeatTransferForm, HeatTransferForm1, HeatTransferForm2, HeatTransferForm3, HeatTransferForm4, HeatTransferForm5, HeatTransferForm6
+from django.core.mail import send_mail
 import numpy as np
 import matplotlib
 matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
+from django.conf import settings
 import io
 import urllib
 import base64
@@ -64,7 +66,24 @@ def home(request):
     return render(request, 'calculations/home.html', {'problems': problems})
 
 def feedback(request):
-    return render(request,'calculations/feedback.html')
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            # Send the feedback via email
+            send_mail(
+                'New Problem Reported',
+                f"Problem Title: {form.cleaned_data['problem_title']}\nDescription: {form.cleaned_data['description']}",
+                settings.EMAIL_HOST_USER,  # From email
+                settings.EMAIL_RECIPIENTS,  # To email
+                fail_silently=False,
+            )
+            return redirect('thank_you')
+    else:
+        form = FeedbackForm()
+    return render(request, 'calculations/feedback.html', {'form': form})
+
+def thank_you_view(request):
+    return render(request, 'calculations/thank_you.html')
 
 @login_required(login_url='/login/')
 def problems(request):
