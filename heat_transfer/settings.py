@@ -30,6 +30,16 @@ DEBUG = True
 # DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 
+#email setting 
+EMAIL_BACKEND = env('EMAIL_BACKEND')
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env.int('EMAIL_PORT')
+EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_RECIPIENTS = env.list('EMAIL_RECIPIENTS',default=['vgosavi070@gmail.com','tejaskjain2003@gmail.com'])
+
+
 ALLOWED_HOSTS = ['your-render-app.onrender.com', '127.0.0.1', 'localhost','mech-website.onrender.com']
 
 LOGIN_REDIRECT_URL = 'home'
@@ -93,12 +103,8 @@ WSGI_APPLICATION = 'heat_transfer.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': env.db('DATABASE_URL')
-# }
 
-# print(f"DATABASE_URL: {env('DATABASE_URL')}")
-# print(f"DATABASES: {DATABASES}")
+
 
 DATABASES = {
     'default': {
@@ -111,12 +117,7 @@ DATABASES = {
     }
 }
 
-# # Try to connect to the database
-# try:
-#     django.db.utils.ConnectionHandler(DATABASES).ensure_defaults()
-#     print("Database connection successful!")
-# except django.db.utils.ConnectionHandler.ConnectionError as err:
-#     print(f"Database connection error: {err}")
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

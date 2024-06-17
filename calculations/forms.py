@@ -40,6 +40,18 @@ class CustomUserChangeForm(UserChangeForm):
             field.widget.attrs['autocomplete'] = 'off'
             field.widget.attrs['aria-label'] = field.label
 
+
+class FeedbackForm(forms.Form):
+    problem_title = forms.CharField(
+        max_length=200,
+        label='Problem Title',
+        widget=forms.TextInput(attrs={'class': 'form-input w-full mt-2'}),
+    )
+    description = forms.CharField(
+        label='Description',
+        widget=forms.Textarea(attrs={'class': 'form-textarea w-full mt-2', 'rows': 4}),
+    )
+
 class HeatTransferForm(forms.Form):
     L1 = forms.FloatField(label='Thickness of layer 1 (m)', widget=forms.NumberInput(attrs={
         'class': 'border border-blue-500 rounded p-2 mb-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-500'
