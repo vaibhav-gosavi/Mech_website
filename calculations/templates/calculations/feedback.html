@@ -1,0 +1,36 @@
+{% extends "calculations/base.html" %}
+
+{% block title %}Feedback{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-teal-400 p-4 sm:p-6 md:p-8 lg:p-10">
+    <div class="w-full max-w-xl bg-white shadow-lg rounded-lg px-6 py-8 sm:px-8 sm:py-12">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 text-center">Feedback</h2>
+        <p class="text-center text-red-500 mb-4">If there is any problem in the solution for the problem then give a feedback along with problem number/title and what is the problem.</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-4 sm:mb-6">
+                <label for="id_problem_title" class="block text-gray-700 font-bold mb-1 sm:mb-2">Problem Title</label>
+                <input type="text" name="problem_title" id="id_problem_title"
+                       class="form-input w-full mt-1 sm:mt-2 outline-black" required>
+            </div>
+            <div class="mb-4 sm:mb-6">
+                <label for="id_description" class="block text-gray-700 font-bold mb-1 sm:mb-2">Description</label>
+                <textarea name="description" id="id_description"
+                          class="form-textarea w-full mt-1 sm:mt-2 outline-black" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">
+                Submit
+            </button>
+        </form>
+    </div>
+</div>
+
+<style>
+    /* Input box outline colors */
+    .outline-black:focus {
+        outline: 2px solid black;
+        outline-offset: 2px;
+    }
+</style>
+{% endblock %}

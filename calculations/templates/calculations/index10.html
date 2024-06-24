@@ -1,0 +1,53 @@
+<!-- fin_app/templates/index4.html -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Heat Exchanger - Area Determination</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+      <h1 class="text-3xl font-bold mt-5 mb-5 text-center text-blue-700">Heat Exchanger - Area Determination</h1>
+      <div class="max-w-2xl w-full mx-auto bg-white shadow-lg rounded-lg p-10">
+        <p>
+            A counter flow shell and tube heat exchanger is used to heat water that flows at a rate of 0.8 kg/s from 30 degrees C to 80 degrees C with hot oil entering at 120 degree C and leaving at 85 degree C. the overall heat transfer coefficient is 125 W/m2K. Calculate the heat transfer area required. Write a python program for this. Include a plot that shows the variation in area as a function of temperature to show the effect of inlet and exit temperatures of oil on area.
+            Observations from the graph:
+            1.  Moving from the lower bottom left to the lower bottom right in the graph (increasing oil inlet temperature while keeping oil outlet temperature constant) results in a decrease in the required heat transfer area.  
+            2.  Moving from the lower bottom right to the upper top right in the graph (constant oil inlet temperature while increasing the outlet temperature) results in a decrease in the required heat transfer area.  
+            3. Moving from the lower bottom left to the upper top right in the graph (increasing oil inlet and outlet temperatures) decreases the required heat transfer area.  
+        </p>
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="m_w">Mass Flow Rate of Water (kg/s)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="m_w" name="m_w" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="T_w_in">Water Inlet Temperature (°C)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="T_w_in" name="T_w_in" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="T_w_out">Water Outlet Temperature (°C)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="T_w_out" name="T_w_out" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="U">Overall Heat Transfer Coefficient (W/m²K)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="U" name="U" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="T_o_in_example">Oil Inlet Temperature for Example (°C)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="T_o_in_example" name="T_o_in_example" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="T_o_out_example">Oil Outlet Temperature for Example (°C)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="T_o_out_example" name="T_o_out_example" required>
+          </div>
+          <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Calculate</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

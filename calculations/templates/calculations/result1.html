@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Heat Transfer Result</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+      <h1 class="text-3xl font-bold mt-5 mb-5 text-center text-blue-700">
+        Calculation Results
+      </h1>
+
+      <!-- Answers Section -->
+      <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 mb-10">
+        <p class="mb-2"><strong>Heat Flux (Q):</strong> {{ Q }} W</p>
+        <p class="mb-2"><strong>Temperature at Interface 1 (T1):</strong> {{ T1 }} °C</p>
+        <p class="mb-2"><strong>Temperature at Interface 2 (T2):</strong> {{ T2 }} °C</p>
+        <p class="mb-2"><strong>Temperature at Interface 3 (T3):</strong> {{ T3 }} °C</p>
+        <p class="mb-2"><strong>Temperature at Surface (T4):</strong> {{ T4 }} °C</p>
+        <p class="mb-2">
+          <strong>Convective Heat Transfer Rate at Gas (Q_conv1):</strong>
+          {{ Q_conv1 }} W
+        </p>
+        <p class="mb-2">
+          <strong>Convective Heat Transfer Rate at Ambient (Q_conv2):</strong>
+          {{ Q_conv2 }} W
+        </p>
+        <p class="mb-2">
+          <strong>Total Thermal Resistance (R_total):</strong> {{ R_total }} K/W
+        </p>
+        {% comment %} <img src="data:image/png;base64,{{ graphic }}" alt="Temperature Distribution" class="mt-4"> {% endcomment %}
+      </div>
+
+      <!-- Graph Section -->
+      <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <canvas id="temperatureChart"></canvas>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      var ctx = document.getElementById('temperatureChart').getContext('2d');
+      var temperatureChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: {{ x }},
+              datasets: [{
+                  label: 'Temperature Distribution',
+                  data: {{ T }},
+                  borderColor: 'rgba(75, 192, 192, 1)',
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  x: {
+                      beginAtZero: true,
+                      title: {
+                          display: true,
+                          text: 'Position (m)'
+                      }
+                  },
+                  y: {
+                      beginAtZero: true,
+                      title: {
+                          display: true,
+                          text: 'Temperature (°C)'
+                      }
+                  }
+              }
+          }
+      });
+    </script>
+  </body>
+</html>

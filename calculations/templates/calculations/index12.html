@@ -1,0 +1,73 @@
+<!-- fin_app/templates/index6.html -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Heat Exchanger - Area Determination</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+      <h1 class="text-3xl font-bold mt-5 mb-5 text-center text-blue-700">Heat Exchanger - Area Determination</h1>
+      <div class="max-w-2xl w-full mx-auto bg-white shadow-lg rounded-lg p-10">
+        <p>
+          For the given parameters, calculate the heat transfer area and the log mean temperature difference.
+        </p>
+        {% if error %}
+        <div class="mb-4 text-red-500">
+          {{ error }}
+        </div>
+        {% endif %}
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="flow_type">Flow Type</label>
+            <select class="border border-blue-500 rounded p-2 w-full" id="flow_type" name="flow_type" required>
+              <option value="parallel">Parallel Flow</option>
+              <option value="counterflow">Counterflow</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="mass_flow_rate_hot">Mass Flow Rate of Hot Fluid (kg/s)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="mass_flow_rate_hot" name="mass_flow_rate_hot" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="cp_hot">Specific Heat Capacity of Hot Fluid (J/kg·K)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="cp_hot" name="cp_hot" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="inlet_temp_hot">Inlet Temperature of Hot Fluid (°C)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="inlet_temp_hot" name="inlet_temp_hot" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="outlet_temp_hot">Outlet Temperature of Hot Fluid (°C)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="outlet_temp_hot" name="outlet_temp_hot" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="mass_flow_rate_cold">Mass Flow Rate of Cold Fluid (kg/s)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="mass_flow_rate_cold" name="mass_flow_rate_cold" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="cp_cold">Specific Heat Capacity of Cold Fluid (J/kg·K)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="cp_cold" name="cp_cold" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="inlet_temp_cold">Inlet Temperature of Cold Fluid (°C)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="inlet_temp_cold" name="inlet_temp_cold" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="outlet_temp_cold">Outlet Temperature of Cold Fluid (°C)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="outlet_temp_cold" name="outlet_temp_cold" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="U">Overall Heat Transfer Coefficient (W/m²·K)</label>
+            <input class="border border-blue-500 rounded p-2 w-full" type="number" step="any" id="U" name="U" required>
+          </div>
+          <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Calculate</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
