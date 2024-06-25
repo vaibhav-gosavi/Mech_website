@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calculation Results</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+      <h1 class="text-3xl font-bold mt-5 mb-5 text-center text-blue-700">
+        Calculation Results
+      </h1>
+      <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 mb-10">
+        <p class="mb-2">
+          <strong>Critical Insulation Thickness:</strong> {{ thickness }} meters
+        </p>
+        <p class="mb-2">
+          <strong>Heat Transfer Rate with Insulation:</strong> {{ Q_new }} W
+        </p>
+        <p class="mb-2">
+          <strong>Original Heat Flux without Insulation:</strong> {{ Q_original }} W
+        </p>
+        <p class="mb-2">
+          <strong>Interfacial Temperature between Layer 1 and 2 (T2):</strong> {{ T2_original }} °C
+        </p>
+        <p class="mb-2">
+          <strong>Interfacial Temperature between Layer 2 and 3 (T3):</strong> {{ T3_original }} °C
+        </p>
+        <p class="mb-2">
+          <strong>Surface Temperature of the outermost layer (T4):</strong> {{ T4_original }} °C
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

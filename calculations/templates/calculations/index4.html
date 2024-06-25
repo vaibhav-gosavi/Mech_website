@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Heat Transfer Calculation in a Cylinder</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+      <h1 class="text-3xl font-bold mt-5 mb-5 text-center text-blue-700">
+        Heat Transfer Calculation in a Cylinder
+      </h1>
+      <div class="max-w-2xl w-full mx-auto bg-white shadow-lg rounded-lg p-10">
+        <p>
+        Consider a hollow cylinder with inner radius r1 and outer radius r2 having thermal conduction of k w/m2-K. Obtain the conduction heat transfer rate and the temperature distribution across the cross section of the cylinder given that at the interior of the cylinder a fluid at temperature T_gas with heat transfer coefficient h_gas exists and the condition surrounding the tube is such that the temperature is T0 and heat transfer coefficient of h_ambient. The inner surface and the outer surface of the cylinder is at T_inner and T_outer respectively.
+        </p>
+        <div class="flex justify-center mb-8">
+          <img
+            src="{% static 'images/hollow_cylinder.png' %}"
+            alt="Description_of_Image_1"
+            class="h-45 w-54 mx-4"
+          />
+        </div>
+        <form method="post">
+          {% csrf_token %}
+          <div class="space-y-4">
+            {{ form.as_p }}
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+          >
+            Calculate
+          </button>
+        </form>
+    </div>
+  </body>
+</html>
