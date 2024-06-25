@@ -18,6 +18,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
 environ.Env.read_env()
+import environ
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+# Read .env file
+environ.Env.read_env(env_file=str(BASE_DIR / '.env'))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -26,18 +35,19 @@ environ.Env.read_env()
 SECRET_KEY = 'django-insecure-mxt3=o&-e69oi9!r6#8))so^%$)7bhb#a+aitwev=$ll9$ttm-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 
 #email setting 
-EMAIL_BACKEND = env('EMAIL_BACKEND')
+# EMAIL_BACKEND = django.core.mail.backends.smtp.EmailBackend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_PORT = env.int('EMAIL_PORT')
 EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-EMAIL_RECIPIENTS = env.list('EMAIL_RECIPIENTS',default=['vgosavi070@gmail.com','tejaskjain2003@gmail.com'])
+EMAIL_RECIPIENTS = env.list('EMAIL_RECIPIENTS')
 
 
 ALLOWED_HOSTS = ['your-render-app.onrender.com', '127.0.0.1', 'localhost','mech-website.onrender.com']
